@@ -21,7 +21,7 @@ namespace MessagePackGenerator
 			}
 
 			StaticCompositeResolver.Instance.Register(
-				//GeneratedResolver.Instance,
+				GeneratedResolver.Instance,
 				UnityBlitResolver.Instance,
 				UnityResolver.Instance,
 				StandardResolver.Instance,

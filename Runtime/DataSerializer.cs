@@ -74,7 +74,7 @@ namespace ToolBox.Serialization
 
             File.WriteAllBytes(path, bytes);
 
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
             Application.ExternalEval("_JS_FileSystem_Sync();");
 #endif
         }
@@ -86,12 +86,12 @@ namespace ToolBox.Serialization
 
             await File.WriteAllBytesAsync(path, bytes, token);
 
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
             Application.ExternalEval("_JS_FileSystem_Sync();");
 #endif
-        }
+		}
 
-        public static void LoadFile(string fileName)
+		public static void LoadFile(string fileName)
         {
             var path = GetPath(fileName);
             var bytes = File.ReadAllBytes(path);
