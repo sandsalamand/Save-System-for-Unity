@@ -138,12 +138,15 @@ namespace ToolBox.Serialization
         {
             var path = Path.Combine(_persistentDataPath, fileName);
 
+
             if (!File.Exists(path))
             {
                 File.Create(path).Close();
             }
 
-            return path;
+			Debug.Log("Getting path " + path);
+
+			return path;
         }
     }
 }
