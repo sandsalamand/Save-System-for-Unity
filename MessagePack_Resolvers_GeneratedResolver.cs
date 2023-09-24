@@ -47,10 +47,16 @@ namespace MessagePack.Resolvers
 
         static GeneratedResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(8)
             {
-                { typeof(global::DemonData), 0 },
-                { typeof(global::PlayerData), 1 },
+                { typeof(global::System.Collections.Generic.List<bool>), 0 },
+                { typeof(global::DemonData), 1 },
+                { typeof(global::PlayerData), 2 },
+                { typeof(global::RoomDefinition.DoorEnabled), 3 },
+                { typeof(global::RoomDefinition.LightEnabled), 4 },
+                { typeof(global::RoomDefinition.ShadowCasterEnabled), 5 },
+                { typeof(global::RoomDefinition.SpriteRendererEnabled), 6 },
+                { typeof(global::RoomSaveData), 7 },
             };
         }
 
@@ -64,8 +70,14 @@ namespace MessagePack.Resolvers
 
             switch (key)
             {
-                case 0: return new MessagePack.Formatters.DemonDataFormatter();
-                case 1: return new MessagePack.Formatters.PlayerDataFormatter();
+                case 0: return new global::MessagePack.Formatters.ListFormatter<bool>();
+                case 1: return new MessagePack.Formatters.DemonDataFormatter();
+                case 2: return new MessagePack.Formatters.PlayerDataFormatter();
+                case 3: return new MessagePack.Formatters.RoomDefinition_DoorEnabledFormatter();
+                case 4: return new MessagePack.Formatters.RoomDefinition_LightEnabledFormatter();
+                case 5: return new MessagePack.Formatters.RoomDefinition_ShadowCasterEnabledFormatter();
+                case 6: return new MessagePack.Formatters.RoomDefinition_SpriteRendererEnabledFormatter();
+                case 7: return new MessagePack.Formatters.RoomSaveDataFormatter();
                 default: return null;
             }
         }
