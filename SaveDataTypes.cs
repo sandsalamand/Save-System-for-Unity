@@ -14,6 +14,7 @@ public struct PlayerData
 public struct DemonData
 {
 	[Key(0)] public UnityEngine.Vector3 position;
+	[Key(1)] public string stateName;
 }
 
 [MessagePackObject, Serializable]
