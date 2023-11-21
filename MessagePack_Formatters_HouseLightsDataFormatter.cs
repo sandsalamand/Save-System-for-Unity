@@ -16,19 +16,17 @@
 
 namespace MessagePack.Formatters
 {
-    public sealed class RoomSaveDataFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::RoomSaveData>
+    public sealed class HouseLightsDataFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::HouseLightsData>
     {
 
-        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::RoomSaveData value, global::MessagePack.MessagePackSerializerOptions options)
+        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::HouseLightsData value, global::MessagePack.MessagePackSerializerOptions options)
         {
             global::MessagePack.IFormatterResolver formatterResolver = options.Resolver;
-            writer.WriteArrayHeader(3);
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.childShadowCastersEnabled, options);
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.childLightsEnabled, options);
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.childSpriteRenderersEnabled, options);
+            writer.WriteArrayHeader(1);
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.lightsEnabled, options);
         }
 
-        public global::RoomSaveData Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+        public global::HouseLightsData Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
         {
             if (reader.TryReadNil())
             {
@@ -38,20 +36,14 @@ namespace MessagePack.Formatters
             options.Security.DepthStep(ref reader);
             global::MessagePack.IFormatterResolver formatterResolver = options.Resolver;
             var length = reader.ReadArrayHeader();
-            var ____result = new global::RoomSaveData();
+            var ____result = new global::HouseLightsData();
 
             for (int i = 0; i < length; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        ____result.childShadowCastersEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
-                        break;
-                    case 1:
-                        ____result.childLightsEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
-                        break;
-                    case 2:
-                        ____result.childSpriteRenderersEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
+                        ____result.lightsEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
                         break;
                     default:
                         reader.Skip();

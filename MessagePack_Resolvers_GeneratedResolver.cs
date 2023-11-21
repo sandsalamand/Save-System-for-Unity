@@ -49,8 +49,8 @@ namespace MessagePack.Resolvers
         {
             lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(4)
             {
-                { typeof(global::System.Collections.Generic.List<bool>), 0 },
-                { typeof(global::DemonData), 1 },
+                { typeof(global::DemonData), 0 },
+                { typeof(global::HouseLightsData), 1 },
                 { typeof(global::PlayerData), 2 },
                 { typeof(global::RoomSaveData), 3 },
             };
@@ -66,8 +66,8 @@ namespace MessagePack.Resolvers
 
             switch (key)
             {
-                case 0: return new global::MessagePack.Formatters.ListFormatter<bool>();
-                case 1: return new MessagePack.Formatters.DemonDataFormatter();
+                case 0: return new MessagePack.Formatters.DemonDataFormatter();
+                case 1: return new MessagePack.Formatters.HouseLightsDataFormatter();
                 case 2: return new MessagePack.Formatters.PlayerDataFormatter();
                 case 3: return new MessagePack.Formatters.RoomSaveDataFormatter();
                 default: return null;

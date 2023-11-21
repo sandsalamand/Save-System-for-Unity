@@ -9,7 +9,6 @@ public struct PlayerData
 	[Key(1)] public float sanity;
 }
 
-
 [MessagePackObject, Serializable]
 public struct DemonData
 {
@@ -20,8 +19,13 @@ public struct DemonData
 [MessagePackObject, Serializable]
 public struct RoomSaveData
 {
-	[Key(0)] public List<bool> childDoorsEnabled;
-	[Key(1)] public List<bool> childShadowCastersEnabled;
-	[Key(2)] public List<bool> childLightsEnabled;
-	[Key(3)] public List<bool> childSpriteRenderersEnabled;
+	[Key(0)] public bool[] childShadowCastersEnabled;
+	[Key(1)] public bool[] childLightsEnabled;
+	[Key(2)] public bool[] childSpriteRenderersEnabled;
+}
+
+[MessagePackObject, Serializable]
+public struct HouseLightsData
+{
+	[Key(0)] public bool[] lightsEnabled;
 }
