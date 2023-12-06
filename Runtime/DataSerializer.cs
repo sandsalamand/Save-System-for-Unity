@@ -144,7 +144,7 @@ namespace ToolBox.Serialization
                 File.Create(path).Close();
             }
 
-			Debug.Log("Getting path " + path);
+			//Debug.Log("Getting path " + path);
 
 			return path;
         }
