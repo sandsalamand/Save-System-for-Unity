@@ -22,9 +22,10 @@ namespace MessagePack.Formatters
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::DemonData value, global::MessagePack.MessagePackSerializerOptions options)
         {
             global::MessagePack.IFormatterResolver formatterResolver = options.Resolver;
-            writer.WriteArrayHeader(2);
+            writer.WriteArrayHeader(3);
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<UnityEngine.Vector3>(formatterResolver).Serialize(ref writer, value.position, options);
             writer.Write(value.stateName);
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<UnityEngine.Vector3>(formatterResolver).Serialize(ref writer, value.lastDetectedPlayerPosition, options);
         }
 
         public global::DemonData Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -48,6 +49,9 @@ namespace MessagePack.Formatters
                         break;
                     case 1:
                         ____result.stateName = reader.ReadInt32();
+                        break;
+                    case 2:
+                        ____result.lastDetectedPlayerPosition = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<UnityEngine.Vector3>(formatterResolver).Deserialize(ref reader, options);
                         break;
                     default:
                         reader.Skip();

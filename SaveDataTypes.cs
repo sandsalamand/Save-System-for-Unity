@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public struct PlayerData
 {
 	[Key(0)] public UnityEngine.Vector3 position;
-	[Key(2)] public UnityEngine.Vector3 lastSoundPosition;
 	[Key(1)] public float sanity;
 }
 
@@ -15,6 +14,7 @@ public struct DemonData
 {
 	[Key(0)] public UnityEngine.Vector3 position;
 	[Key(1)] public int stateName;  //this gets converted back into an enum on load
+	[Key(2)] public UnityEngine.Vector3 lastDetectedPlayerPosition;
 }
 
 [MessagePackObject, Serializable]
