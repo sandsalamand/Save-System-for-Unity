@@ -22,11 +22,8 @@ namespace MessagePack.Formatters
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::RoomSaveData value, global::MessagePack.MessagePackSerializerOptions options)
         {
             global::MessagePack.IFormatterResolver formatterResolver = options.Resolver;
-            writer.WriteArrayHeader(4);
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.childShadowCastersEnabled, options);
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.childLightsEnabled, options);
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.childSpriteRenderersEnabled, options);
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.childCollidersEnabled, options);
+            writer.WriteArrayHeader(1);
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Serialize(ref writer, value.componentsEnabled, options);
         }
 
         public global::RoomSaveData Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -46,16 +43,7 @@ namespace MessagePack.Formatters
                 switch (i)
                 {
                     case 0:
-                        ____result.childShadowCastersEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
-                        break;
-                    case 1:
-                        ____result.childLightsEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
-                        break;
-                    case 2:
-                        ____result.childSpriteRenderersEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
-                        break;
-                    case 3:
-                        ____result.childCollidersEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
+                        ____result.componentsEnabled = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<bool[]>(formatterResolver).Deserialize(ref reader, options);
                         break;
                     default:
                         reader.Skip();

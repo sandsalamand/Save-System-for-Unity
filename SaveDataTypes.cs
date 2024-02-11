@@ -20,10 +20,7 @@ public struct DemonData
 [MessagePackObject, Serializable]
 public struct RoomSaveData
 {
-	[Key(0)] public bool[] childShadowCastersEnabled;
-	[Key(1)] public bool[] childLightsEnabled;
-	[Key(2)] public bool[] childSpriteRenderersEnabled;
-	[Key(3)] public bool[] childCollidersEnabled;
+	[Key(0)] public bool[] componentsEnabled;
 }
 
 [MessagePackObject, Serializable]
