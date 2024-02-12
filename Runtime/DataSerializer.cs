@@ -10,6 +10,13 @@ namespace ToolBox.Serialization
 {
     public static class DataSerializer
     {
+#if FUNCTION_IN_EDITOR
+		static DataSerializer()
+		{
+			Setup();
+		}
+#endif
+
         private static Dictionary<string, byte[]> _data = new();
         private static readonly string _persistentDataPath = Application.persistentDataPath;
 
@@ -127,9 +134,10 @@ namespace ToolBox.Serialization
             return MessagePackSerializer.Deserialize<T>(bytes, Options);
         }
 
-        // Should we get rid of Setup and let user configure DataSerializer (there's only Container lol) themselves?
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Setup()
+#if !FUNCTION_IN_EDITOR
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+#endif
+		public static void Setup()
         {
             Container = Resources.Load<AssetsContainer>("ToolBoxAssetsContainer");
         }
@@ -138,13 +146,10 @@ namespace ToolBox.Serialization
         {
             var path = Path.Combine(_persistentDataPath, fileName);
 
-
             if (!File.Exists(path))
             {
                 File.Create(path).Close();
             }
-
-			//Debug.Log("Getting path " + path);
 
 			return path;
         }

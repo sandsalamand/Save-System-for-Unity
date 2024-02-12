@@ -3,6 +3,7 @@ using MessagePack.Resolvers;
 using MessagePack.Unity;
 using MessagePack.Unity.Extension;
 using Serializer;
+using System.Runtime.InteropServices;
 using ToolBox.Serialization;
 using UnityEngine;
 
@@ -12,7 +13,11 @@ namespace MessagePackGenerator
 	{
 		private static bool _serializerRegistered;
 
+#if FUNCTION_IN_EDITOR
+		[UnityEditor.InitializeOnLoadMethod]
+#elif !FUNCTION_IN_EDITOR
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+#endif
 		private static void Initialize()
 		{
 			if (_serializerRegistered)
